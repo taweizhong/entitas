@@ -18,9 +18,9 @@ class Collector(object):
         for group in self._groups:
             group_event = self._groups[group]
 
-            added_event = group_event == GroupEvent.added
-            removed_event = group_event == GroupEvent.removed
-            added_or_removed_event = group_event == GroupEvent.added_or_removed
+            added_event = group_event == GroupEvent.ADDED
+            removed_event = group_event == GroupEvent.REMOVED
+            added_or_removed_event = group_event == GroupEvent.ADDED_OR_REMOVED
 
             if added_event or added_or_removed_event:
                 group.on_entity_added -= self._add_entity
@@ -40,7 +40,7 @@ class Collector(object):
     def clear_collected_entities(self):
         self._collected_entities.clear()
 
-    def _add_entity(self, entity):  # , component
+    def _add_entity(self, entity, component):  # , component
         self._collected_entities.add(entity)
 
     def __repr__(self):
